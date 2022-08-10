@@ -19,6 +19,7 @@ let mapleader = " "
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>W :wa<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader>ve :e $MYVIMRC<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>
 vnoremap <leader>y "+y
@@ -75,16 +76,18 @@ let g:coc_global_extensions = [
 \  'coc-vimlsp'
 \]
 
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? coc#_select_confirm() :
-"      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"      \ <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+" remap for complete to use tab and <cr>
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <C-n> coc#refresh()
+
+hi CocSearch ctermfg=12 guifg=#18A3FF
+hi CocMenuSel ctermbg=109 guibg=#13354A
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -92,14 +95,6 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
-
-inoremap <silent><expr> <C-n> coc#refresh()
-
-if exists('*complete_info')
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -119,8 +114,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-"autocmd CursorHold * silent call CocActionAsync('highlight')
-
 nmap <leader>rn <Plug>(coc-rename)
 
 xmap <leader>f <Plug>(coc-format-selected)
@@ -138,6 +131,9 @@ omap ac <Plug>(coc-classobj-a)
 
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
+
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
@@ -170,6 +166,8 @@ Plug 'voldikss/vim-floaterm'
 let g:floaterm_keymap_new = '<Leader>sh'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
