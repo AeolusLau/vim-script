@@ -68,7 +68,7 @@ let g:coc_global_extensions = [
 \  'coc-markdownlint',
 \  'coc-marketplace',
 \  'coc-protobuf',
-\  'coc-python',
+\  'coc-pyright',
 \  'coc-sh',
 \  'coc-snippets',
 \  'coc-spell-checker',
@@ -103,6 +103,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nmap <silent> fix <Plug>(coc-fix-current)
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -159,6 +161,7 @@ nmap <Leader>rg :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
 Plug 'dense-analysis/ale'
 let g:ale_disable_lsp = 1
 let g:ale_cpp_cc_options = '-std=c++17 -Wall'
+let g:ale_use_global_executables = 1
 
 Plug 'dart-lang/dart-vim-plugin'
 
@@ -180,6 +183,7 @@ augroup default
   autocmd!
   autocmd FocusGained,BufEnter * :silent! checktime
   autocmd FileType c,cpp setlocal colorcolumn=81 "foldmethod=syntax
+  autocmd FileType objc,objcpp setlocal colorcolumn=101 "foldmethod=syntax
   "autocmd FileType c,cpp :highlight Folded guibg=gray guifg=purple
   "autocmd BufEnter *.c,*.cc,*.cpp setlocal foldlevel=2 foldnestmax=3 foldcolumn=4
   "autocmd BufEnter *.h,*.hh,*.hpp setlocal foldlevel=3 foldnestmax=4 foldcolumn=5

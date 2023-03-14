@@ -7,11 +7,15 @@
     "clangd.path": "/usr/local/opt/llvm/bin/clangd",
     "diagnostic.displayByAle": true,
     "semanticTokens.filetypes": ["*"],
+    "python.formatting.provider": "yapf",
     "snippets.extends": {
         "cpp": ["c"]
     },
     "cSpell.userWords": [
+      "alignas",
+      "asio",
       "azeroth",
+      "chao",
       "chrono",
       "clangd",
       "cronet",
@@ -28,6 +32,7 @@
       "jlong",
       "jmethod",
       "jni",
+      "jniexport",
       "jobject",
       "klink",
       "kuaishou",
@@ -42,13 +47,33 @@
       "quic",
       "relogin",
       "spdy",
+      "thanos",
       "thiz",
       "wifi",
       "xquic"
     ],
     "cSpell.ignoreWords": [
       "clazz",
+      "edetached",
+      "env",
       "huidu",
-      "ljava"
-    ]
+      "jclass",
+      "jfield",
+      "jni",
+      "jnicall",
+      "jobject",
+      "kconf",
+      "ksapisrv",
+      "ktrace",
+      "kwaidc",
+      "kwaitalk",
+      "lcom",
+      "ljava",
+      "protobuf",
+      "relinker",
+      "shibinqiang",
+      "socat",
+      "streq",
+      "woverloaded"
+    ],
 }
