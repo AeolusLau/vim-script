@@ -38,8 +38,9 @@ let g:airline_powerline_fonts = 1
 
 " cSpell:disable
 
-Plug '/usr/local/opt/fzf'
-"Plug 'junegunn/fzf.vim'
+"Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
 
