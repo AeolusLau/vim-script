@@ -11,6 +11,7 @@
     "snippets.extends": {
         "cpp": ["c"]
     },
+    "npm.binPath": "pnpm",
     "cSpell.userWords": [
       "alignas",
       "asio",
