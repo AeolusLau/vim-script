@@ -4,7 +4,6 @@
     "coc.preferences.silentAutoupdate": true,
     "coc.preferences.snippetStatusText": "SNIP",
     "git.conflict.current.hlGroup": "DiffChange",
-    "clangd.path": "/usr/local/opt/llvm/bin/clangd",
     "diagnostic.displayByAle": true,
     "semanticTokens.filetypes": ["*"],
     "python.formatting.provider": "yapf",
