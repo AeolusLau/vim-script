@@ -1,4 +1,5 @@
 {
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.extensionUpdateCheck": "daily",
     "coc.preferences.jumpCommand": "drop",
     "coc.preferences.silentAutoupdate": true,

@@ -8,10 +8,10 @@ set wildmenu wildmode=list:longest,full
 set autoindent cindent
 set hidden
 set cmdheight=2
-set updatetime=100
+set updatetime=200
 set shortmess+=c
-set signcolumn=number
-set viminfo='1000
+"set signcolumn=number    " TODO: What's this?
+"set viminfo='1000        " TODO: What's this?
 set conceallevel=3 concealcursor=nc
 
 let mapleader = " "
@@ -28,19 +28,32 @@ nnoremap <leader>yp "+yip
 nnoremap <leader>p "+p
 nnoremap <leader>bd :bp\|bd #<CR>
 
+" cSpell:disable
+
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'tpope/vim-sensible'
+
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 "let g:airline_theme='dark'
 
-" cSpell:disable
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 "Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
 
@@ -59,13 +72,17 @@ let g:coc_global_extensions = [
 \  'coc-clangd',
 \  'coc-cmake',
 \  'coc-cspell-dicts',
+\  'coc-dictionary',
+\  'coc-emoji',
 \  'coc-explorer',
 \  'coc-floaterm',
 \  'coc-format-json',
 \  'coc-fzf-preview',
 \  'coc-git',
+\  'coc-html',
 \  'coc-java',
 \  'coc-json',
+\  'coc-lists',
 \  'coc-markdownlint',
 \  'coc-marketplace',
 \  'coc-protobuf',
@@ -74,26 +91,37 @@ let g:coc_global_extensions = [
 \  'coc-snippets',
 \  'coc-spell-checker',
 \  'coc-sql',
-\  'coc-vimlsp'
+\  'coc-tsserver',
+\  'coc-vimlsp',
+\  'coc-word'
 \]
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
-" remap for complete to use tab and <cr>
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use <c-n> to trigger completion
 inoremap <silent><expr> <C-n> coc#refresh()
 
-hi CocSearch ctermfg=12 guifg=#18A3FF
-hi CocMenuSel ctermbg=109 guibg=#13354A
+inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
 
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+hi CocSearch ctermfg=12 guifg=#18A3FF
+hi CocMenuSel ctermbg=109 guibg=#13354A
 
 let g:coc_snippet_next = '<tab>'
 
@@ -105,24 +133,47 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-nmap <silent> fix <Plug>(coc-fix-current)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
   endif
 endfunction
 
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rf <Plug>(coc-refactor)
 
 xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
-" cSpell:words funcobj clangd
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying code actions at the cursor position
+nmap <leader>ac <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap <leader>as <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>fix <Plug>(coc-fix-current)
+
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+" Run the Code Lens action on the current line
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
@@ -132,13 +183,19 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
-vmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction-selected)
-
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'E' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'W' . info['warning'])
+  endif
+  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+endfunction
+set statusline^=%{StatusDiagnostic()}%{get(b:,'coc_current_function','')}
 
 let g:coc_explorer_global_presets = {
 \   'floating': {
@@ -159,6 +216,9 @@ nmap <Leader>st :<C-u>CocCommand fzf-preview.GitStatus<CR>
 nmap <Leader>jl :<C-u>CocCommand fzf-preview.Jumps<CR>  "Jump List
 nmap <Leader>rg :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
 
+nmap <Leader>cc :<C-u>CocCommand<CR>
+nmap <Leader>cl :<C-u>CocList<CR>
+
 Plug 'dense-analysis/ale'
 let g:ale_disable_lsp = 1
 let g:ale_cpp_cc_options = '-std=c++17 -Wall'
@@ -172,6 +232,7 @@ let g:floaterm_keymap_new = '<Leader>sh'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 Plug 'chrisbra/Colorizer'
+"let g:colorizer_auto_filetype='log,css,html'
 
 call plug#end()
 
@@ -188,5 +249,6 @@ augroup default
   "autocmd FileType c,cpp :highlight Folded guibg=gray guifg=purple
   "autocmd BufEnter *.c,*.cc,*.cpp setlocal foldlevel=2 foldnestmax=3 foldcolumn=4
   "autocmd BufEnter *.h,*.hh,*.hpp setlocal foldlevel=3 foldnestmax=4 foldcolumn=5
+  autocmd BufEnter *.log,*.txt ColorHighlight
   autocmd FileType java setlocal colorcolumn=101
 augroup END
