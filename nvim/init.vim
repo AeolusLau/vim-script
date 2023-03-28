@@ -74,11 +74,8 @@ let g:coc_global_extensions = [
 \  'coc-clangd',
 \  'coc-cmake',
 \  'coc-cspell-dicts',
-\  'coc-dictionary',
-\  'coc-emoji',
 \  'coc-explorer',
 \  'coc-floaterm',
-\  'coc-format-json',
 \  'coc-fzf-preview',
 \  'coc-git',
 \  'coc-java',
@@ -86,14 +83,11 @@ let g:coc_global_extensions = [
 \  'coc-lists',
 \  'coc-markdownlint',
 \  'coc-marketplace',
-\  'coc-protobuf',
 \  'coc-pyright',
 \  'coc-sh',
 \  'coc-snippets',
 \  'coc-spell-checker',
-\  'coc-tsserver',
 \  'coc-vimlsp',
-\  'coc-word'
 \]
 
 " Use tab for trigger completion with characters ahead and navigate
