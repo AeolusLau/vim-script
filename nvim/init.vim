@@ -13,6 +13,7 @@ set shortmess+=c
 "set signcolumn=number    " TODO: What's this?
 "set viminfo='1000        " TODO: What's this?
 set conceallevel=3 concealcursor=nc
+set pumblend=10
 
 let mapleader = " "
 
@@ -26,7 +27,7 @@ vnoremap <leader>y "+y
 nnoremap <leader>yw "+yiw
 nnoremap <leader>yp "+yip
 nnoremap <leader>p "+p
-nnoremap <leader>bd :bp\|bd #<CR>
+nnoremap <leader>x :bp\|bd #<CR>
 
 " cSpell:disable
 
@@ -63,6 +64,7 @@ Plug 'google/vim-glaive'
 nnoremap <Leader>= :FormatCode<CR>
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rcarriga/nvim-notify'
 
 Plug 'honza/vim-snippets'
 
@@ -79,7 +81,6 @@ let g:coc_global_extensions = [
 \  'coc-format-json',
 \  'coc-fzf-preview',
 \  'coc-git',
-\  'coc-html',
 \  'coc-java',
 \  'coc-json',
 \  'coc-lists',
@@ -90,7 +91,6 @@ let g:coc_global_extensions = [
 \  'coc-sh',
 \  'coc-snippets',
 \  'coc-spell-checker',
-\  'coc-sql',
 \  'coc-tsserver',
 \  'coc-vimlsp',
 \  'coc-word'
@@ -101,7 +101,8 @@ let g:coc_global_extensions = [
 " no select by `"suggest.noselect": true` in your configuration file
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackspace() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
@@ -211,13 +212,13 @@ let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never'
 let g:fzf_preview_command = 'bat --color=always --plain {-1}'
 let g:fzf_preview_lines_command = 'bat --color=always --plain --number'
 
-nmap <Leader>ff :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+nmap <Leader>ff :<C-u>CocList files<CR>
 nmap <Leader>st :<C-u>CocCommand fzf-preview.GitStatus<CR>
 nmap <Leader>jl :<C-u>CocCommand fzf-preview.Jumps<CR>  "Jump List
 nmap <Leader>rg :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
 
 nmap <Leader>cc :<C-u>CocCommand<CR>
-nmap <Leader>cl :<C-u>CocList<CR>
+nmap <Leader>ll :<C-u>CocList<CR>
 
 Plug 'dense-analysis/ale'
 let g:ale_disable_lsp = 1
