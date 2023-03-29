@@ -14,6 +14,7 @@ set shortmess+=c
 "set viminfo='1000        " TODO: What's this?
 set conceallevel=3 concealcursor=nc
 set pumblend=10
+set foldmethod=syntax foldlevel=100
 
 let mapleader = " "
 
@@ -90,25 +91,18 @@ let g:coc_global_extensions = [
 \  'coc-vimlsp',
 \]
 
-" Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ CheckBackspace() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use <c-n> to trigger completion
-inoremap <silent><expr> <C-n> coc#refresh()
-
-inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
+inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#scroll(1) : coc#refresh()
+inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#scroll(0) : "\<C-p>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1

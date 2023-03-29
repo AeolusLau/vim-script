@@ -35,6 +35,7 @@ function! s:StatusNotify() abort
   let l:status = get(g:, 'coc_status', '')
   let l:level = 'info'
   if empty(l:status) | return '' | endif
+  if stridx(l:status, 'cSpell') ~= -1 | return '' | endif
   call v:lua.coc_status_notify(l:status, l:level)
 endfunction
 
