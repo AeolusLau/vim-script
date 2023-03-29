@@ -101,8 +101,10 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
 inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#scroll(1) : coc#refresh()
-inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#scroll(0) : "\<C-p>"
+inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
+inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(0) : "\<C-p>"
+inoremap <silent><expr> <C-f> coc#pum#visible() ? coc#pum#scroll(1) : "\<C-f>"
+inoremap <silent><expr> <C-b> coc#pum#visible() ? coc#pum#scroll(0) : "\<C-b>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1
