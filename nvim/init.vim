@@ -248,4 +248,4 @@ augroup default
   autocmd FileType java setlocal colorcolumn=101
 augroup END
 
-source coc-notify-integration.vim
+runtime! coc-notify-integration.vim
