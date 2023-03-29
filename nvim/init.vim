@@ -247,3 +247,5 @@ augroup default
   autocmd BufEnter *.log,*.txt ColorHighlight
   autocmd FileType java setlocal colorcolumn=101
 augroup END
+
+source coc-notify-integration.vim
