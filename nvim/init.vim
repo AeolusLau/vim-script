@@ -74,7 +74,6 @@ Plug 'honza/vim-snippets'
 let g:coc_global_extensions = [
 \  'coc-clangd',
 \  'coc-cmake',
-\  'coc-cspell-dicts',
 \  'coc-explorer',
 \  'coc-floaterm',
 \  'coc-fzf-preview',
