@@ -3,15 +3,16 @@
     "coc.preferences.extensionUpdateCheck": "daily",
     "coc.preferences.jumpCommand": "drop",
     "coc.preferences.silentAutoupdate": true,
-    "coc.preferences.snippetStatusText": "SNIP",
+    "snippet.statusText": "SNIP",
     "git.conflict.current.hlGroup": "DiffChange",
     "diagnostic.displayByAle": true,
-    "semanticTokens.filetypes": ["*"],
+    "semanticTokens.enable": true,
     "python.formatting.provider": "yapf",
     "snippets.extends": {
         "cpp": ["c"]
     },
     "npm.binPath": "pnpm",
+    "cSpell.showStatus": false,
     "cSpell.userWords": [
       "alignas",
       "asio",
@@ -56,7 +57,6 @@
     "cSpell.ignoreWords": [
       "clazz",
       "edetached",
-      "env",
       "huidu",
       "jclass",
       "jfield",

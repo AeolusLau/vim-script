@@ -64,6 +64,8 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 nnoremap <Leader>= :FormatCode<CR>
 
+Plug 'github/copilot.vim'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rcarriga/nvim-notify'
 
@@ -83,6 +85,7 @@ let g:coc_global_extensions = [
 \  'coc-lists',
 \  'coc-markdownlint',
 \  'coc-marketplace',
+\  'coc-pairs',
 \  'coc-pyright',
 \  'coc-sh',
 \  'coc-snippets',
@@ -234,13 +237,11 @@ nnoremap <S-Tab> :bprevious<CR>
 augroup default
   autocmd!
   autocmd FocusGained,BufEnter * :silent! checktime
-  autocmd FileType c,cpp setlocal colorcolumn=81 "foldmethod=syntax
-  autocmd FileType objc,objcpp setlocal colorcolumn=101 "foldmethod=syntax
-  "autocmd FileType c,cpp :highlight Folded guibg=gray guifg=purple
-  "autocmd BufEnter *.c,*.cc,*.cpp setlocal foldlevel=2 foldnestmax=3 foldcolumn=4
-  "autocmd BufEnter *.h,*.hh,*.hpp setlocal foldlevel=3 foldnestmax=4 foldcolumn=5
-  autocmd BufEnter *.log,*.txt ColorHighlight
-  autocmd FileType java setlocal colorcolumn=101
+  autocmd FileType c,cpp setlocal colorcolumn=81 list listchars=leadmultispace:\|\ ,trail:- foldmethod=syntax foldlevel=100
+  autocmd FileType objc,objcpp,java setlocal colorcolumn=101 list listchars=leadmultispace:\|\ ,trail:- foldmethod=syntax foldlevel=100
+  autocmd FileType c,cpp,objc,objcpp,java :highlight Folded guibg=gray guifg=lightgreen
+  autocmd FileType c,cpp,objc,objcpp,java :highlight NonText guifg=gray
+  "autocmd BufEnter *.log,*.txt ColorHighlight
 augroup END
 
 runtime! coc-notify-integration.vim
