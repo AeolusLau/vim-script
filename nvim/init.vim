@@ -217,8 +217,6 @@ let g:ale_disable_lsp = 1
 let g:ale_cpp_cc_options = '-std=c++17 -Wall'
 let g:ale_use_global_executables = 1
 
-Plug 'dart-lang/dart-vim-plugin'
-
 Plug 'voldikss/vim-floaterm'
 let g:floaterm_keymap_new = '<Leader>sh'
 
