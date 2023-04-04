@@ -28,15 +28,12 @@ Plug 'honza/vim-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rcarriga/nvim-notify'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'voldikss/vim-floaterm'
 call plug#end()
 
@@ -50,7 +47,6 @@ let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
 let g:airline#extensions#hunks#coc_git = 1
 let g:airline_powerline_fonts = 1
-"let g:airline_theme='dark'
 
 " ale
 let g:ale_disable_lsp = 1
@@ -110,10 +106,6 @@ let g:coc_explorer_global_presets = {
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never'
 let g:fzf_preview_command = 'bat --color=always --plain {-1}'
 let g:fzf_preview_lines_command = 'bat --color=always --plain --number'
-
-" goyo & limelight
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
 
 augroup default
   autocmd!

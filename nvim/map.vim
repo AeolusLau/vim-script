@@ -45,9 +45,9 @@ vnoremap                <leader>y   "+y
 nnoremap                <leader>yp  "+yip
 nnoremap                <leader>yw  "+yiw
 nnoremap                <S-Tab>     :bprevious<CR>
-inoremap         <expr> <S-TAB>     coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap         <expr> <S-Tab>     coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 nnoremap                <Tab>       :bnext<CR>
-inoremap <silent><expr> <TAB>       coc#pum#visible() ? coc#pum#next(1) : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : CheckBackspace() ? "\<TAB>" : coc#refresh()
+inoremap <silent><expr> <Tab>       coc#pum#visible() ? coc#pum#next(1) : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : CheckBackspace() ? "\<TAB>" : coc#refresh()
     nmap <silent>       [g          <Plug>(coc-diagnostic-prev)
     nmap <silent>       ]g          <Plug>(coc-diagnostic-next)
     xmap                ac          <Plug>(coc-classobj-a)
