@@ -1,3 +1,5 @@
+" spell-checker: disable
+
 set autoindent cindent
 set cmdheight=2
 set conceallevel=3 concealcursor=nc
