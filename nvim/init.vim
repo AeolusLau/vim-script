@@ -12,10 +12,10 @@ set nowrap scrolloff=5 sidescrolloff=5 "linebreak
 set number relativenumber signcolumn=number
 set pumblend=10 winblend=10
 set shortmess+=c
+set suffixes-=.h wildignore+=.class,.o,.obj,.swp,~ wildmenu wildmode=longest:full,full
 set termguicolors "cursorline cursorcolumn
 set title
-set updatetime=200
-set wildmenu wildmode=list:longest,full
+set updatetime=1000
 
 "set viminfo='1000        " TODO: What's this?
 

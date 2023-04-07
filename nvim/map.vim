@@ -1,3 +1,5 @@
+" spell-checker: disable
+
 let mapleader = " "
 
 " sort i /.*map \(.silent.\)\? \?\(.expr.\)\? \?/
@@ -10,7 +12,6 @@ inoremap <silent><expr> <C-p>       coc#pum#visible() ? coc#pum#prev(0) : "\<C-p
     nmap <silent>       <C-s>       <Plug>(coc-range-select)
     xmap <silent>       <C-s>       <Plug>(coc-range-select)
 inoremap <silent><expr> <CR>        coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-nnoremap                <leader>=   :FormatCode<CR>
     vmap                <leader>a   <Plug>(coc-codeaction-selected)
     nmap                <leader>a   <Plug>(coc-codeaction-selected)
     nmap                <leader>ac  <Plug>(coc-codeaction-cursor)
@@ -31,7 +32,7 @@ nnoremap                <leader>q   :q<CR>
     nmap <silent>       <leader>r   <Plug>(coc-codeaction-refactor-selected)
     nmap <silent>       <leader>re  <Plug>(coc-codeaction-refactor)
     nmap                <leader>rf  <Plug>(coc-refactor)
-    nmap                <leader>rg  :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+    nmap                <leader>rg  :<C-u>CocCommand fzf-preview.ProjectGrep <C-r><C-w><CR>
     nmap                <leader>rn  <Plug>(coc-rename)
 nnoremap <silent>       <leader>sh  :FloatermToggle<CR>
     nmap                <leader>st  :<C-u>CocCommand fzf-preview.GitStatus<CR>
@@ -40,7 +41,8 @@ nnoremap                <leader>ve  :e $MYVIMRC<CR>
 nnoremap                <leader>vs  :source $MYVIMRC<CR>
 nnoremap                <leader>w   :w<CR>
 nnoremap                <leader>W   :wa<CR>
-nnoremap                <leader>x   :bp\|bd #<CR>
+nnoremap                <leader>x   :bp\|bd#<CR>
+nnoremap                <leader>X   :%bd\|e#\|bd#<CR>
 vnoremap                <leader>y   "+y
 nnoremap                <leader>yp  "+yip
 nnoremap                <leader>yw  "+yiw
@@ -58,6 +60,7 @@ inoremap <silent><expr> <Tab>       coc#pum#visible() ? coc#pum#next(1) : coc#ex
     nmap                ga          <Plug>(EasyAlign)
     nmap <silent>       gd          <Plug>(coc-definition)
     nmap <silent>       gi          <Plug>(coc-implementation)
+nnoremap                gq          :FormatCode<CR>
     nmap <silent>       gr          <Plug>(coc-references)
     nmap <silent>       gy          <Plug>(coc-type-definition)
     xmap                ic          <Plug>(coc-classobj-i)
