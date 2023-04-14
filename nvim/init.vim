@@ -7,7 +7,7 @@ set expandtab tabstop=2 shiftwidth=2
 set foldmethod=syntax foldlevel=100
 set hidden
 set ignorecase smartcase
-set list listchars=trail:-
+set list listchars=tab:\ \ →,trail:-
 set nowrap scrolloff=5 sidescrolloff=5 "linebreak
 set number relativenumber signcolumn=number
 set pumblend=10 winblend=10
@@ -112,8 +112,8 @@ let g:fzf_preview_lines_command = 'bat --color=always --plain --number'
 augroup default
   autocmd!
   autocmd FocusGained,BufEnter * :silent! checktime
-  autocmd FileType c,cpp setlocal colorcolumn=81 listchars=leadmultispace:\|\ ,trail:- foldmethod=syntax foldlevel=100
-  autocmd FileType objc,objcpp,java setlocal colorcolumn=101 listchars=leadmultispace:\|\ ,trail:- foldmethod=syntax foldlevel=100
+  autocmd FileType c,cpp setlocal colorcolumn=81 listchars+=leadmultispace:\|\  foldmethod=syntax foldlevel=100
+  autocmd FileType objc,objcpp,java setlocal colorcolumn=101 listchars+=leadmultispace:\|\  foldmethod=syntax foldlevel=100
   autocmd FileType c,cpp,objc,objcpp,java :highlight Folded guibg=gray guifg=lightgreen
   autocmd FileType c,cpp,objc,objcpp,java :highlight NonText guifg=gray
   "autocmd BufEnter *.log,*.txt ColorHighlight

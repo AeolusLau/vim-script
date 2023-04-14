@@ -2,7 +2,11 @@
 
 let mapleader = " "
 
-" sort i /.*map \(.silent.\)\? \?\(.expr.\)\? \?/
+" Switch ` & '
+nnoremap ' `
+nnoremap ` '
+
+" sort i /.*map \(.silent.\)\? *\(.expr.\)\? \?/
 inoremap <silent><expr> <C-b>       coc#pum#visible() ? coc#pum#scroll(0) : "\<C-b>"
 inoremap <silent><expr> <C-f>       coc#pum#visible() ? coc#pum#scroll(1) : "\<C-f>"
 inoremap <silent><expr> <C-j>       coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
@@ -41,8 +45,8 @@ nnoremap                <leader>ve  :e $MYVIMRC<CR>
 nnoremap                <leader>vs  :source $MYVIMRC<CR>
 nnoremap                <leader>w   :w<CR>
 nnoremap                <leader>W   :wa<CR>
+nnoremap                <leader>X   :%bd\|e#\|bd#<CR>`"
 nnoremap                <leader>x   :bp\|bd#<CR>
-nnoremap                <leader>X   :%bd\|e#\|bd#<CR>
 vnoremap                <leader>y   "+y
 nnoremap                <leader>yp  "+yip
 nnoremap                <leader>yw  "+yiw

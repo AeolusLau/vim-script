@@ -63,6 +63,7 @@
       "objcpp",
       "powerlevel",
       "protobuf",
+      "protoc",
       "quic",
       "relinker",
       "relogin",
