@@ -6,6 +6,15 @@ let mapleader = " "
 nnoremap ' `
 nnoremap ` '
 
+" Switch 0 & ^
+nnoremap 0 ^
+nnoremap ^ 0
+
+nnoremap ( [(
+nnoremap ) ])
+nnoremap { b{w
+nnoremap } }w
+
 " sort i /.*map \(.silent.\)\? *\(.expr.\)\? \?/
 inoremap <silent><expr> <C-b>       coc#pum#visible() ? coc#pum#scroll(0) : "\<C-b>"
 inoremap <silent><expr> <C-f>       coc#pum#visible() ? coc#pum#scroll(1) : "\<C-f>"

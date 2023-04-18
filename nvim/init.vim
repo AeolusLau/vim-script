@@ -1,19 +1,20 @@
 " spell-checker: disable
 
 set autoindent cindent
-set cmdheight=2
+set cmdheight=1
 set conceallevel=3 concealcursor=nc
 set expandtab tabstop=2 shiftwidth=2
 set foldmethod=syntax foldlevel=100
 set hidden
 set ignorecase smartcase
-set list listchars=tab:\ \ →,trail:-
-set nowrap scrolloff=5 sidescrolloff=5 "linebreak
+set list listchars=tab:\ \ →,trail:-,extends:»,precedes:«,nbsp:+
+set nowrap scrolloff=5 sidescrolloff=5 linebreak
 set number relativenumber signcolumn=number
 set pumblend=10 winblend=10
-set shortmess+=c
+set shortmess-=T "shortmess+=c
 set suffixes-=.h wildignore+=.class,.o,.obj,.swp,~ wildmenu wildmode=longest:full,full
-set termguicolors "cursorline cursorcolumn
+set termguicolors
+set timeoutlen=800  " Speed your fingers up, man~
 set title
 set updatetime=1000
 
@@ -76,9 +77,6 @@ let g:coc_global_extensions = [
 \  'coc-vimlsp',
 \]
 
-" Highlight the symbol and its references when holding the cursor
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 hi CocSearch ctermfg=12 guifg=#18A3FF
 hi CocMenuSel ctermbg=109 guibg=#13354A
 
@@ -116,7 +114,9 @@ augroup default
   autocmd FileType objc,objcpp,java setlocal colorcolumn=101 listchars+=leadmultispace:\|\  foldmethod=syntax foldlevel=100
   autocmd FileType c,cpp,objc,objcpp,java :highlight Folded guibg=gray guifg=lightgreen
   autocmd FileType c,cpp,objc,objcpp,java :highlight NonText guifg=gray
-  "autocmd BufEnter *.log,*.txt ColorHighlight
+
+  " Highlight the symbol and its references when holding the cursor
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
 
 runtime! map.vim
