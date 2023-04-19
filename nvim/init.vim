@@ -22,7 +22,7 @@ set updatetime=1000
 
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'chrisbra/Colorizer'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'github/copilot.vim'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
@@ -52,9 +52,9 @@ let g:airline#extensions#hunks#coc_git = 1
 let g:airline_powerline_fonts = 1
 
 " ale
-let g:ale_disable_lsp = 1
-let g:ale_cpp_cc_options = '-std=c++17 -Wall'
-let g:ale_use_global_executables = 1
+"let g:ale_disable_lsp = 1
+"let g:ale_cpp_cc_options = '-std=c++17 -Wall'
+"let g:ale_use_global_executables = 1
 
 " coc.nvim
 let g:coc_global_extensions = [

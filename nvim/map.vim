@@ -47,6 +47,7 @@ nnoremap                <leader>q   :q<CR>
     nmap                <leader>rf  <Plug>(coc-refactor)
     nmap                <leader>rg  :<C-u>CocCommand fzf-preview.ProjectGrep <C-r><C-w><CR>
     nmap                <leader>rn  <Plug>(coc-rename)
+nnoremap <silent>       <leader>sb  :<C-u>CocList -I symbols<CR>
 nnoremap <silent>       <leader>sh  :FloatermToggle<CR>
     nmap                <leader>st  :<C-u>CocCommand fzf-preview.GitStatus<CR>
     nmap                <leader>sw  :CocCommand clangd.switchSourceHeader<CR>
@@ -63,8 +64,8 @@ nnoremap                <S-Tab>     :bprevious<CR>
 inoremap         <expr> <S-Tab>     coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 nnoremap                <Tab>       :bnext<CR>
 inoremap <silent><expr> <Tab>       coc#pum#visible() ? coc#pum#next(1) : coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" : CheckBackspace() ? "\<TAB>" : coc#refresh()
-    nmap <silent>       [g          <Plug>(coc-diagnostic-prev)
-    nmap <silent>       ]g          <Plug>(coc-diagnostic-next)
+    nmap <silent>       [[          <Plug>(coc-diagnostic-prev)
+    nmap <silent>       ]]          <Plug>(coc-diagnostic-next)
     xmap                ac          <Plug>(coc-classobj-a)
     omap                ac          <Plug>(coc-classobj-a)
     xmap                af          <Plug>(coc-funcobj-a)
